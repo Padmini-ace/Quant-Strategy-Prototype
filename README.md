@@ -1,135 +1,87 @@
-AlgoTrading Automation
+<h1><b>Quant Startegy Prototype</b></h1>
+An end-to-end quantitative research pipeline for market analysis, predictive modeling, and performance monitoring.
+This repository contains a modular framework designed to handle the full lifecycle of a quantitative trading strategy: from raw data ingestion and feature engineering to machine learning-based direction prediction and cloud-integrated analytics.
 
-An end-to-end algorithmic trading prototype that integrates technical indicators, machine learning-based market direction prediction, Google Sheets reporting, and a Streamlit dashboard for monitoring performance.
+<b>🏗️ System Architecture</b>
+The pipeline is architected to ensure a clear separation of concerns, moving beyond simple scripting into a structured research workflow:
+<table style="width:100%; border-collapse: collapse; font-family: sans-serif; background-color: #1a1a1a; color: #fff;">
+  <thead>
+    <tr style="background-color: #00ff88; color: #000;">
+      <th style="padding: 12px; border: 1px solid #333;">Layer</th>
+      <th style="padding: 12px; border: 1px solid #333;">Responsibility</th>
+      <th style="padding: 12px; border: 1px solid #333;">Key Technologies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #333;"><b>Data Layer</b></td>
+      <td style="padding: 10px; border: 1px solid #333;">Historical data ingestion with IPv4 stability hacks</td>
+      <td style="padding: 10px; border: 1px solid #333;">yfinance, socket</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #333;"><b>Logic Layer</b></td>
+      <td style="padding: 10px; border: 1px solid #333;">Alpha generation via technical indicators (RSI, MA)</td>
+      <td style="padding: 10px; border: 1px solid #333;">pandas, ta</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #333;"><b>Predictive Layer</b></td>
+      <td style="padding: 10px; border: 1px solid #333;">Directional price forecasting via Logistic Regression</td>
+      <td style="padding: 10px; border: 1px solid #333;">scikit-learn</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #333;"><b>Logging Layer</b></td>
+      <td style="padding: 10px; border: 1px solid #333;">Real-time cloud synchronization for trade auditing</td>
+      <td style="padding: 10px; border: 1px solid #333;">gspread, Google Sheets API</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #333;"><b>View Layer</b></td>
+      <td style="padding: 10px; border: 1px solid #333;">Performance visualization and metrics dashboard</td>
+      <td style="padding: 10px; border: 1px solid #333;">Streamlit</td>
+    </tr>
+  </tbody>
+</table>
 
-This project demonstrates how to build a complete automated trading analysis system using real market data, feature engineering, backtesting logic, and cloud-based logging.
+<b>🛠️ Key Technical Features</b>
+1. Robust Data PipelineStability: Implements a custom socket wrapper to force IPv4, resolving common API timeout issues with Indian ISPs.Feature Engineering: Automated computation of Mean Reversion (RSI) and Trend-Following (Moving Average) indicators.
+2. Predictive Modeling (Experimental)Time-Series Integrity: Uses non-shuffled train-test splits to prevent look-ahead bias and data leakage.Objective Function: Binary classification targeting next-day price direction ($C_{t+1} > C_t$).
+3. Analytics & PersistenceCloud Integration: Asynchronous logging to Google Sheets for persistent performance tracking across multiple runs.Interactive Dashboard: A dedicated Streamlit interface to monitor "Strategy Returns" vs "ML Accuracy" in real-time.
 
-Key Features:
+<b>📂 Project Structure</b>
 
-1. Automated Data Pipeline:
+Quant-Strategy-Prototype/
 
-* Fetches market data using Yahoo Finance
-* Computes RSI, 20-day MA, 50-day MA
-* Generates buy and sell signals based on indicator conditions
+│
 
-2. Machine Learning Prediction:
+├── main.py              # Quantitative pipeline (Data -> Signal -> ML -> Log)
 
-* Logistic Regression prediction for next-day price direction
-* Train-test split preserving time order
-* Logs prediction accuracy for every run
+├── dashboard.py         # Streamlit-based performance analytics UI
 
-3. Strategy Backtesting
+├── credentials.json     # Google Cloud Service Account Key (Not in Repo)
 
-* Computes returns based on signal performance
-* Calculates win ratio and cumulative strategy profitability
-* Generates per-stock performance summaries
+├── requirements.txt     # Environment dependencies
 
-4. Cloud-Based Logging (Google Sheets):
+├── .gitignore           # Security: Protects API keys and local caches
 
-* Logs all outputs to Google Sheets through the Google Sheets API
-* Maintains:
+└── README.md            # Technical documentation
 
-  * TradeLog
-  * SummaryPNL
-  * WinRatio
 
-5. Streamlit Dashboard:
+<b>⚙️ Deployment & Usage</b>
+1. Environment Setup
+   # Clone the repository
+git clone https://github.com/Padmini-ace/Quant-Strategy-Prototype.git
+cd Quant-Strategy-Prototype
 
-* Displays logged trades
-* Shows performance summaries
-* Visualizes return trends over time
-* Provides a simple, interactive interface for reviewing results
-
-Tech Stack:
-
-* Python
-* Pandas, NumPy, scikit-learn
-* TA indicators (RSI, Moving Averages)
-* Yahoo Finance API (yfinance)
-* Google Sheets API (gspread, OAuth2)
-* Streamlit
-
-Installation and Setup
-
-1. Clone the repository:
-git clone https://github.com/Padmini-ace/AlgoTrading-Automation
-cd AlgoTrading-Automation
-
-2. Install dependencies:
+# Install dependencies
 pip install -r requirements.txt
 
-3. Add Google Sheets credentials
+2. Execution Flow
+   a)Research Pipeline: Run python main.py to fetch data, generate signals, and log results to the cloud.
+   b)Analytics Dashboard: Run streamlit run dashboard.py to view the performance metrics and equity curve.
 
-Place your service account file in the root directory as:
-credentials.json
+<b>🧪 Roadmap & Future Improvements</b>
 
-Ensure the service account has access to your Google Sheet.
+[ ] Walk-Forward Validation: Implementing rolling-window cross-validation for the ML model.
 
-4. Prepare Google Sheets
+[ ] Transaction Modeling: Adding slippage and brokerage commission (0.1% per trade) to backtest math.
 
-Create a Google Sheet named:
-AlgoTrading
-
-The script will auto-create the necessary worksheets:
-
-* TradeLog
-* SummaryPNL
-* WinRatio
-
-Running the Algorithm:
-python main.py
-
-This will:
-
-1. Fetch market data
-2. Compute indicators
-3. Generate ML predictions
-4. Backtest the strategy
-5. Log outputs to Google Sheets
-6. Print a summary to the console
-
-
-Launching the Dashboard:
-streamlit run dashboard.py
-
-This will open a browser interface showing:
-* Trade logs
-* ML accuracy metrics
-* Return trends
-* Per-stock summaries
-
-Project Structure:
-
-AlgoTrading-Automation/
-│
-├── main.py                 # Core trading and ML pipeline
-├── dashboard.py            # Streamlit dashboard interface
-├── credentials.json        # Google API credentials (excluded from git)
-├── requirements.txt        # Dependencies
-├── .gitattributes
-└── README.md
-
-Current Limitations:
-
-* Backtesting logic is simplified
-* Machine learning model is basic and does not use walk-forward validation
-* Transaction costs and slippage are not modeled
-* Logging uses Google Sheets instead of a full database
-
-Future Improvements:
-
-* Advanced backtesting with Sharpe ratio and drawdown analysis
-* Walk-forward cross-validation for ML models
-* Improved feature engineering (volatility, ATR, momentum factors)
-* Risk management and position sizing
-* Database backend for scalable logging
-* A more advanced dashboard
-
-Purpose of the Project:
-
-This project is intended as a learning-level prototype exploring the complete workflow of:
-Data acquisition → Indicator computation → Machine learning → Backtesting → Cloud logging → Visualization
-It serves as a starting point for understanding automated trading system design, not as a live trading solution.
-
-
-
+[ ] Risk Framework: Integrating ATR-based dynamic stop-losses and position sizing.
