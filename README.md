@@ -1,4 +1,4 @@
-<h1><b>Quant Startegy Prototype</b></h1>
+<h1><b>Quant-Startegy-Prototype</b></h1>
 An end-to-end quantitative research pipeline for market analysis, predictive modeling, and performance monitoring.
 This repository contains a modular framework designed to handle the full lifecycle of a quantitative trading strategy: from raw data ingestion and feature engineering to machine learning-based direction prediction and cloud-integrated analytics.
 
