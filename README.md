@@ -20,7 +20,7 @@ The pipeline is architected to ensure a clear separation of concerns, moving bey
     </tr>
     <tr>
       <td style="padding: 10px; border: 1px solid #333;"><b>Logic Layer</b></td>
-      <td style="padding: 10px; border: 1px solid #333;">Alpha generation via technical indicators (RSI, MA)</td>
+      <td style="padding: 10px; border: 1px solid #333;">Signal generation via technical indicators (RSI, MA)</td>
       <td style="padding: 10px; border: 1px solid #333;">pandas, ta</td>
     </tr>
     <tr>
