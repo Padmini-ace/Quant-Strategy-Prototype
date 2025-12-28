@@ -45,7 +45,7 @@ The pipeline is architected to ensure a clear separation of concerns, moving bey
 1. Robust Data PipelineStability: Implements a custom socket wrapper to force IPv4, resolving common API timeout issues with Indian ISPs.Feature Engineering: Automated computation of Mean Reversion (RSI) and Trend-Following (Moving Average) indicators.
 2. Predictive Modeling (Experimental)Time-Series Integrity: Uses non-shuffled train-test splits to prevent look-ahead bias and data leakage.Objective Function: Binary classification targeting next-day price direction ($C_{t+1} > C_t$).
    (*This prediction task is exploratory and not directly optimized for trading profitability.)
-4. Analytics & PersistenceCloud Integration: Asynchronous logging to Google Sheets for persistent performance tracking across multiple runs.Interactive Dashboard: A dedicated Streamlit interface to monitor "Strategy Returns" vs "ML Accuracy" in real-time.
+4. Analytics & PersistenceCloud Integration: Asynchronous logging to Google Sheets for persistent performance tracking across multiple runs.Interactive Dashboard: A dedicated Streamlit interface to monitor "Strategy Returns" vs "ML Accuracy" across experimental runs.
 
 <b>📂 Project Structure</b>
 
