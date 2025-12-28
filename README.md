@@ -30,7 +30,7 @@ The pipeline is architected to ensure a clear separation of concerns, moving bey
     </tr>
     <tr>
       <td style="padding: 10px; border: 1px solid #333;"><b>Logging Layer</b></td>
-      <td style="padding: 10px; border: 1px solid #333;">Real-time cloud synchronization for trade auditing</td>
+      <td style="padding: 10px; border: 1px solid #333;">Cloud-based logging for persistent performance tracking across multiple runs.</td>
       <td style="padding: 10px; border: 1px solid #333;">gspread, Google Sheets API</td>
     </tr>
     <tr>
@@ -44,7 +44,8 @@ The pipeline is architected to ensure a clear separation of concerns, moving bey
 <b>🛠️ Key Technical Features</b>
 1. Robust Data PipelineStability: Implements a custom socket wrapper to force IPv4, resolving common API timeout issues with Indian ISPs.Feature Engineering: Automated computation of Mean Reversion (RSI) and Trend-Following (Moving Average) indicators.
 2. Predictive Modeling (Experimental)Time-Series Integrity: Uses non-shuffled train-test splits to prevent look-ahead bias and data leakage.Objective Function: Binary classification targeting next-day price direction ($C_{t+1} > C_t$).
-3. Analytics & PersistenceCloud Integration: Asynchronous logging to Google Sheets for persistent performance tracking across multiple runs.Interactive Dashboard: A dedicated Streamlit interface to monitor "Strategy Returns" vs "ML Accuracy" in real-time.
+   (*This prediction task is exploratory and not directly optimized for trading profitability.)
+4. Analytics & PersistenceCloud Integration: Asynchronous logging to Google Sheets for persistent performance tracking across multiple runs.Interactive Dashboard: A dedicated Streamlit interface to monitor "Strategy Returns" vs "ML Accuracy" in real-time.
 
 <b>📂 Project Structure</b>
 
